@@ -24,6 +24,13 @@ const jsonLd = {
     "@type": "Organization",
     name: "龍億檢驗科技有限公司",
     alternateName: "Long Yi Inspection Technology Co., Ltd.",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "文藻路22號8樓",
+      addressLocality: "三民區",
+      addressRegion: "高雄市",
+      addressCountry: "TW",
+    },
   },
 };
 

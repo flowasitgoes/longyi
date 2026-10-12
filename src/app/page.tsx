@@ -70,9 +70,34 @@ const services = [
 ] as const;
 
 const desks = [
-  { region: "北部窗口", en: "NORTH" },
-  { region: "中部窗口", en: "CENTRAL" },
-  { region: "南部窗口", en: "SOUTH" },
+  {
+    name: "總公司",
+    en: "HEAD OFFICE",
+    address: "高雄市三民區文藻路22號8樓",
+    phone: "",
+    fax: "",
+  },
+  {
+    name: "高雄分處公務所",
+    en: "KAOHSIUNG",
+    address: "高雄市小港區山邊路2號",
+    phone: "(07) 871-6888",
+    fax: "(07) 871-7777",
+  },
+  {
+    name: "雲林工務所",
+    en: "YUNLIN",
+    address: "雲林縣崙背鄉大有232-9號",
+    phone: "(05) 693-9979",
+    fax: "(05) 693-3850",
+  },
+  {
+    name: "宜蘭工務所",
+    en: "YILAN",
+    address: "宜蘭縣蘇澳鎮蘇北里冷泉路15之1號-1F",
+    phone: "",
+    fax: "",
+  },
 ] as const;
 
 const inquiryPoints = [
@@ -125,10 +150,8 @@ function Hero() {
           <span className="h-px w-8 bg-orange" aria-hidden />
           NON-DESTRUCTIVE TESTING
         </p>
-        <h1 className="mt-4 text-[clamp(2.55rem,8vw,6.6rem)] leading-[0.98] font-medium tracking-[-0.045em]">
-          工業非破壞
-          <br />
-          檢測
+        <h1 className="mt-4 text-[clamp(1.85rem,4.6vw,4.15rem)] leading-none font-medium tracking-[-0.04em] whitespace-nowrap">
+          工業非破壞檢測
         </h1>
         <p className="mt-5 text-lg sm:mt-7">龍億檢驗科技有限公司</p>
         <p className="mt-1 max-w-full font-condensed text-[12px] leading-5 tracking-[0.08em] text-white/65 sm:text-sm sm:tracking-[0.14em]">
@@ -196,7 +219,7 @@ function About() {
         <div className="flex items-center px-5 py-16 md:px-12 lg:px-16 lg:py-24">
           <div className="max-w-xl">
             <Eyebrow index="01" label="公司介紹" en="THE COMPANY" />
-            <h2 className={display}>先把方法說清楚。</h2>
+            <h2 className={display}>介紹貴司所提供的服務</h2>
             <div className="mt-8 space-y-5 text-[17px] leading-8 text-ink/78">
               <p>
                 龍億檢驗科技有限公司（Long Yi Inspection Technology Co.,
@@ -223,11 +246,7 @@ function Services() {
         <div className="grid items-end gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] lg:gap-16">
           <div className="max-w-xl">
             <Eyebrow index="02" label="服務項目" en="METHODS" tone="light" />
-            <h2 className={display}>
-              八種方法，
-              <br />
-              各自有界限。
-            </h2>
+            <h2 className={display}>介紹不同檢測方法</h2>
             <p className="mt-6 text-pretty text-[17px] leading-8 text-white/72">
               下面只解釋這些方法在工業上通常怎麼被理解。不代表本公司已承作對應案件，也沒有列出人員資格。
             </p>
@@ -295,11 +314,7 @@ function Locations() {
         <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/55 to-navy/25" />
         <div className="absolute inset-x-0 bottom-0 mx-auto w-full max-w-[1440px] px-5 pb-10 text-white md:px-10 lg:px-14">
           <Eyebrow index="03" label="服務據點" en="DESKS" tone="light" />
-          <h2 className={display}>
-            三個窗口，
-            <br className="sm:hidden" />
-            位置尚未公告。
-          </h2>
+          <h2 className={display}>高雄、雲林、宜蘭。</h2>
         </div>
         <p className="absolute top-5 right-5 bg-navy/80 px-3 py-2 text-[11px] tracking-wide text-white/75 md:right-10">
           情境影像 · 非本公司廠區
@@ -308,25 +323,32 @@ function Locations() {
 
       <div className="mx-auto w-full max-w-[1440px] px-5 py-14 md:px-10 lg:px-14 lg:py-20">
         <p className="max-w-2xl text-[17px] leading-8 text-ink/75">
-          北部、中部、南部各留一個聯絡窗口。地址、電話與實際負責範圍確定後才會放上來；目前都尚未公告，請不要把這三欄讀成現有辦公室。
+          總公司在高雄三民。高雄另有分處公務所，雲林與宜蘭各有工務所。電話與傳真以名片所載為準。
         </p>
-        <ul className="mt-10 grid border-t border-ink/15 lg:grid-cols-3">
+        <ul className="mt-10 grid gap-x-12 gap-y-12 sm:grid-cols-2 xl:grid-cols-4">
           {desks.map((desk) => (
-            <li
-              key={desk.region}
-              className="border-b border-ink/15 py-8 lg:border-r lg:border-b-0 lg:px-8 lg:py-10 lg:first:pl-0 lg:last:border-r-0 lg:last:pr-0"
-            >
+            <li key={desk.name} className="border-t border-ink/15 pt-6">
               <p className="font-condensed text-xs tracking-[0.22em] text-ink/45">{desk.en}</p>
-              <h3 className="mt-3 text-4xl font-medium tracking-tight md:text-5xl">{desk.region}</h3>
-              <dl className="mt-8 text-sm">
-                <div className="flex items-baseline justify-between gap-4 border-t border-ink/10 py-3">
+              <h3 className="mt-3 text-3xl font-medium tracking-tight">{desk.name}</h3>
+              <dl className="mt-6 space-y-4 text-sm leading-6">
+                <div className="border-t border-ink/10 pt-3">
                   <dt className="text-ink/50">地址</dt>
-                  <dd>尚未公告</dd>
+                  <dd className="mt-1">{desk.address}</dd>
                 </div>
-                <div className="flex items-baseline justify-between gap-4 border-t border-ink/10 py-3">
-                  <dt className="text-ink/50">電話</dt>
-                  <dd>尚未公告</dd>
-                </div>
+                {desk.phone ? (
+                  <div className="border-t border-ink/10 pt-3">
+                    <dt className="text-ink/50">電話</dt>
+                    <dd className="mt-1">
+                      <a href={`tel:${desk.phone.replace(/[^\d]/g, "")}`}>{desk.phone}</a>
+                    </dd>
+                  </div>
+                ) : null}
+                {desk.fax ? (
+                  <div className="border-t border-ink/10 pt-3">
+                    <dt className="text-ink/50">傳真</dt>
+                    <dd className="mt-1">{desk.fax}</dd>
+                  </div>
+                ) : null}
               </dl>
             </li>
           ))}
@@ -343,7 +365,7 @@ function Contact() {
         <div className="bg-navy px-5 py-16 text-white md:px-10 lg:px-14 lg:py-24">
           <div className="max-w-xl">
             <Eyebrow index="04" label="聯絡詢價" en="INQUIRY" tone="light" />
-            <h2 className={display}>把工件與問題寫下來。</h2>
+            <h2 className={display}>客戶問題詢問與洽談</h2>
             <p className="mt-6 text-[17px] leading-8 text-white/72">
               正式上線後，這裡用來留下公司、聯絡方式，以及想了解的檢測方法。現在這張表單只示範填寫，送出後不會儲存，也不會寄信。
             </p>
@@ -362,8 +384,16 @@ function Contact() {
             </ol>
             <dl className="mt-10 max-w-md text-sm">
               <div className="flex items-baseline justify-between gap-4 border-t border-white/15 py-3">
-                <dt className="text-white/50">電話</dt>
-                <dd>尚未公告</dd>
+                <dt className="text-white/50">高雄</dt>
+                <dd>
+                  <a href="tel:078716888">(07) 871-6888</a>
+                </dd>
+              </div>
+              <div className="flex items-baseline justify-between gap-4 border-t border-white/15 py-3">
+                <dt className="text-white/50">雲林</dt>
+                <dd>
+                  <a href="tel:056939979">(05) 693-9979</a>
+                </dd>
               </div>
               <div className="flex items-baseline justify-between gap-4 border-t border-b border-white/15 py-3">
                 <dt className="text-white/50">電子信箱</dt>
@@ -433,9 +463,18 @@ function Footer() {
         </div>
       </div>
       <div className="border-t border-white/10">
-        <p className="mx-auto w-full max-w-[1440px] px-5 py-4 text-xs tracking-wide text-white/40 md:px-10 lg:px-14">
-          龍億檢驗科技有限公司 · 展示稿 · 搜尋引擎預設不索引
-        </p>
+        <div className="mx-auto flex w-full max-w-[1440px] flex-col items-start gap-3 px-5 py-4 text-xs tracking-wide sm:flex-row sm:items-center sm:justify-between md:px-10 lg:px-14">
+          <p className="text-white/40">龍億檢驗科技有限公司 · 展示稿 · 搜尋引擎預設不索引</p>
+          <a
+            href="https://ndc.ifunlove.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="self-end text-white/75 transition-colors hover:text-white sm:self-auto"
+          >
+            客戶Demo網站 by NDC studio
+            <span className="sr-only">（另開新視窗）</span>
+          </a>
+        </div>
       </div>
     </footer>
   );
